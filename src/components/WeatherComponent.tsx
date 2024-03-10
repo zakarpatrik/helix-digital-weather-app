@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import Image from 'next/image';
 
 const convertToKmH = (wind: number) => {
   const windKmH = wind * 3.6;
@@ -23,28 +24,40 @@ const WeatherComponent = () => {
     !weatherInfo.loading &&
     !cityInfo.loading && (
       <Card>
-        <CardHeader>
-          <CardTitle>{cityInfo.data?.city}</CardTitle>
-          <CardDescription>{weatherInfo.data?.description}</CardDescription>
+        <CardHeader className='flex flex-row gap-8 items-center justify-between'>
+          <div>
+            <CardTitle>{cityInfo.data?.city}</CardTitle>
+            <CardDescription>{weatherInfo.data?.description}</CardDescription>
+          </div>
+          <div className='relative w-8 h-8'>
+            <Image
+              src={weatherInfo.data?.iconUrl as string}
+              alt='weather icon'
+              fill
+              className='object-contain'
+            />
+          </div>
         </CardHeader>
-        <CardContent className='flex gap-8 w-full'>
-          <div>
-            <h4 className='text-sm'>Hőmérséklet</h4>
-            <h2 className='text-2xl font-bold'>
-              {weatherInfo.data?.temp} <sup>o</sup>C
-            </h2>
-          </div>
-          <div>
-            <h4 className='text-sm'>Páratartalom</h4>
-            <h2 className='text-2xl font-bold'>
-              {weatherInfo.data?.humidity} %
-            </h2>
-          </div>
-          <div>
-            <h4 className='text-sm'>Szélsebesség</h4>
-            <h2 className='text-2xl font-bold'>
-              {convertToKmH(weatherInfo.data?.wind as number)} km/h
-            </h2>
+        <CardContent>
+          <div className='flex gap-8 w-full justify-between'>
+            <div>
+              <h4 className='text-sm'>Hőmérséklet</h4>
+              <h2 className='text-2xl font-bold'>
+                {weatherInfo.data?.temp} <sup>o</sup>C
+              </h2>
+            </div>
+            <div>
+              <h4 className='text-sm'>Páratartalom</h4>
+              <h2 className='text-2xl font-bold'>
+                {weatherInfo.data?.humidity} %
+              </h2>
+            </div>
+            <div>
+              <h4 className='text-sm'>Szélsebesség</h4>
+              <h2 className='text-2xl font-bold'>
+                {convertToKmH(weatherInfo.data?.wind as number)} km/h
+              </h2>
+            </div>
           </div>
         </CardContent>
       </Card>

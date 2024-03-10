@@ -8,6 +8,7 @@ interface WeatherData {
   wind: number;
   main: string;
   description: string;
+  iconUrl: string;
 }
 
 interface Coordinates {
@@ -37,6 +38,7 @@ const useWeather = ({ latitude, longitude }: Coordinates) => {
             wind: result.wind.speed,
             main: result.weather[0].main,
             description: result.weather[0].description,
+            iconUrl: `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`
           });
         } else {
           throw new Error(result.message);
