@@ -28,7 +28,7 @@ const useCity = ({ latitude, longitude }: Coordinates) => {
 
         if (response.ok) {
           setData({
-            city: result.name,
+            city: result[0].name,
           });
         } else {
           throw new Error(result.message);
