@@ -10,7 +10,12 @@ interface WeatherData {
   description: string;
 }
 
-const useWeather = (city: string) => {
+interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+
+const useWeather = ({ latitude, longitude }: Coordinates) => {
   const [data, setData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +25,7 @@ const useWeather = (city: string) => {
       setLoading(true);
       try {
         const apiKey = process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY;
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
         const response = await fetch(url);
         const result = await response.json();
@@ -44,7 +49,7 @@ const useWeather = (city: string) => {
     };
 
     fetchData();
-  }, [city]);
+  }, [latitude, longitude]);
 
   return { data, loading, error };
 };
