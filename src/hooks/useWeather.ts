@@ -1,20 +1,9 @@
 'use client';
 
+import { Coordinates, WeatherData } from '@/types/types';
 import { useState, useEffect } from 'react';
 
-interface WeatherData {
-  temp: number;
-  humidity: number;
-  wind: number;
-  main: string;
-  description: string;
-  iconUrl: string;
-}
 
-interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
 
 const useWeather = ({ latitude, longitude }: Coordinates) => {
   const [data, setData] = useState<WeatherData | null>(null);
@@ -28,6 +17,10 @@ const useWeather = ({ latitude, longitude }: Coordinates) => {
         const apiKey = process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY;
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&lang=hu&units=metric`;
 
+        if (!latitude || !longitude) {
+          return;
+        };
+
         const response = await fetch(url);
         const result = await response.json();
 
@@ -38,7 +31,7 @@ const useWeather = ({ latitude, longitude }: Coordinates) => {
             wind: result.wind.speed,
             main: result.weather[0].main,
             description: result.weather[0].description,
-            iconUrl: `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`
+            iconUrl: result.weather[0].icon,
           });
         } else {
           throw new Error(result.message);

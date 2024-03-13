@@ -1,15 +1,7 @@
 'use client';
 
+import { CityData, Coordinates } from '@/types/types';
 import { useState, useEffect } from 'react';
-
-interface CityData {
-  city: string;
-}
-
-interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
 
 const useCity = ({ latitude, longitude }: Coordinates) => {
   const [data, setData] = useState<CityData | null>(null);
@@ -22,6 +14,10 @@ const useCity = ({ latitude, longitude }: Coordinates) => {
       try {
         const apiKey = process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY;
         const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${apiKey}`;
+
+        if (!latitude || !longitude) {
+          return;
+        };
 
         const response = await fetch(url);
         const result = await response.json();
