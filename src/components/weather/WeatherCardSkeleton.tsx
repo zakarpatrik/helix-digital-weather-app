@@ -1,14 +1,13 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
-import Image from 'next/image';
+import { Card, CardHeader, CardContent } from '../ui/card';
 import { Skeleton } from "@/components/ui/skeleton"
-import { CityData, Payload, WeatherData } from '@/types/types';
+import styles from './weather.module.scss';
 
 
 const WeatherCardSkeleton = () => {
   return (
     <Card>
-      <CardHeader className='flex flex-row gap-8 items-center justify-between'>
+      <CardHeader className={`flex flex-row gap-8 items-center justify-between ${styles['weather-component-header']}`}>
         <div className='w-1/3 flex gap-2 flex-col'>
           <Skeleton className='h-6 w-full' />
           <Skeleton className='h-4 w-full' />

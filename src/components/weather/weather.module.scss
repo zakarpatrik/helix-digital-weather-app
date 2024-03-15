@@ -1,0 +1,26 @@
+@import '@/styles/variables.scss';
+
+.daytime-gradient {
+  background: linear-gradient(to top, $yellow, $green);
+}
+
+.nighttime-gradient {
+  background: linear-gradient(to top, $blue, $pink);
+}
+
+@media only screen and (max-width: $md-breakpoint) {
+  .weather-component-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0;
+  }
+
+  .weather-component-card {
+    h2 {
+      font-size: 1rem;
+    }
+    h4 {
+      font-size: 0.8rem;
+    }
+  }
+}
