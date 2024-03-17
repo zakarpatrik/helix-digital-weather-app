@@ -3,8 +3,6 @@
 import { Coordinates, WeatherData } from '@/types/types';
 import { useState, useEffect } from 'react';
 
-
-
 const useWeather = ({ latitude, longitude }: Coordinates) => {
   const [data, setData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

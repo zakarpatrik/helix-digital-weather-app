@@ -2,10 +2,8 @@
 import useCity from '@/hooks/useCity';
 import useWeather from '@/hooks/useWeather';
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
 import WeatherCard from './WeatherCard';
 import WeatherCardSkeleton from './WeatherCardSkeleton';
-import { Label } from "@/components/ui/label"
 import CoordinateInput from './CoordinateInput';
 
 const WeatherComponent = () => {

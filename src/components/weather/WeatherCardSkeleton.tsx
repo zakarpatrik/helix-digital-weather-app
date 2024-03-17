@@ -17,7 +17,7 @@ const WeatherCardSkeleton = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className='flex gap-8 w-full justify-between'>
+        <div className='flex flex-wrap gap-8 w-full justify-between'>
           <div>
             <h4 className='text-sm'>Hőmérséklet</h4>
             <h2 className='text-2xl font-bold'>

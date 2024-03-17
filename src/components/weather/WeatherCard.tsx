@@ -35,7 +35,7 @@ const WeatherCard = (props: WeatherCardProps) => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className={`flex gap-8 w-full justify-between ${styles['weather-component-card']}`}>
+        <div className={`flex flex-wrap gap-8 w-full justify-between ${styles['weather-component-card']}`}>
           <div>
             <h4 className='text-sm text-slate-200'>Hőmérséklet</h4>
             <h2 className='text-2xl font-bold text-white'>
